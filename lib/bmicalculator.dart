@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'dart:math';
+// import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
 
@@ -8,87 +10,26 @@ class BMICalculator extends StatefulWidget {
 }
 
 class _BMICalculatorState extends State<BMICalculator> {
-  extra(gender) {
-    // Container(
-    //             decoration: BoxDecoration(),
-    //             child: gender == 'Male'
-    //                 ? Align(
-    //                     alignment: Alignment(100, 100),
-    //                     // decoration: BoxDecoration(),
-    //                     child: Image.asset(
-    //                       'asset/man.png',
-    //                       height: 200,
-    //                       alignment: Alignment.topLeft,
-    //                     ),
-    //                   )
-    //                 : Image.asset(
-    //                     'asset/girl.png',
-    //                     height: 200,
-    //                   ),
-    //           ),
-    //           SizedBox(
-    //             width: 10,
-    //           ),
-    //           Column(
-    //             children: [
-    //               SizedBox(
-    //                 height: 10,
-    //               ),
-    //               Container(
-    //                 decoration: BoxDecoration(
-    //                     color: Colors.blue,
-    //                     borderRadius: BorderRadius.circular(15)),
-    //                 child: Padding(
-    //                   padding: const EdgeInsets.all(8.0),
-    //                   child: Text(
-    //                     "Weight in KG",
-    //                     style: TextStyle(color: Colors.white, fontSize: 15),
-    //                   ),
-    //                 ),
-    //               ),
-    //               Container(
-    //                 width: 150,
-    //                 height: 100,
-    //                 child: Align(
-    //                   alignment: Alignment.centerLeft,
-    //                   child: Material(
-    //                     child: TextField(
-    //                       keyboardType: TextInputType.number,
-    //                       decoration:
-    //                           InputDecoration(hintText: "Enter weight"),
-    //                     ),
-    //                   ),
-    //                 ),
-    //               ),
-    //               Container(
-    //                 decoration: BoxDecoration(
-    //                     color: Colors.blue,
-    //                     borderRadius: BorderRadius.circular(15)),
-    //                 child: Padding(
-    //                   padding: const EdgeInsets.all(8.0),
-    //                   child: Text(
-    //                     "Height in Feet",
-    //                     style: TextStyle(color: Colors.white, fontSize: 15),
-    //                   ),
-    //                 ),
-    //               ),
-    //               Container(
-    //                 width: 150,
-    //                 height: 100,
-    //                 child: Align(
-    //                   alignment: Alignment.centerLeft,
-    //                   child: Material(
-    //                     child: TextField(
-    //                       keyboardType: TextInputType.number,
-    //                       decoration:
-    //                           InputDecoration(hintText: "Enter Meters"),
-    //                     ),
-    //                   ),
-    //                 ),
-    //               ),
-    //             ],
-    //           );
+  var bmi;
+
+  final heightController = TextEditingController();
+  final weightController = TextEditingController();
+  void dispose() {
+    heightController.dispose();
+    weightController.dispose();
+    super.dispose();
   }
+
+  _calculateBMI(height, weight) {
+    height = double.parse(height.text);
+    weight = double.parse(weight.text);
+    var bmi = weight / pow(height, 2);
+    bmi = bmi.toStringAsFixed(2);
+    bmi = double.parse(bmi);
+    print(bmi.runtimeType);
+    return bmi;
+  }
+
   @override
   Widget build(BuildContext context) {
     final gender = ModalRoute.of(context).settings.arguments;
@@ -148,6 +89,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                               alignment: Alignment.centerLeft,
                               child: Material(
                                 child: TextField(
+                                  controller: weightController,
                                   keyboardType: TextInputType.number,
                                   decoration:
                                       InputDecoration(hintText: "Enter weight"),
@@ -180,6 +122,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                               alignment: Alignment.centerLeft,
                               child: Material(
                                 child: TextField(
+                                  controller: heightController,
                                   keyboardType: TextInputType.number,
                                   decoration:
                                       InputDecoration(hintText: "Enter Meters"),
@@ -188,7 +131,16 @@ class _BMICalculatorState extends State<BMICalculator> {
                             ),
                           ),
                           RaisedButton(
-                            onPressed: () {},
+                            color: Colors.amber,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            onPressed: () {
+                              print(heightController.text);
+                              bmi = _calculateBMI(
+                                  heightController, weightController);
+                              print(bmi);
+                              this.setState(() {});
+                            },
                             child: Text("CALCULATE"),
                           )
                         ],
@@ -212,9 +164,22 @@ class _BMICalculatorState extends State<BMICalculator> {
                       ),
                       color: Colors.deepPurple,
                     ),
-                    child: Column(children: [Text("Your Calculated BMI is")]),
-
-                    // width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Your Calculated BMI is",
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),
