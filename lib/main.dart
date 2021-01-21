@@ -51,14 +51,22 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Container(
-                margin: EdgeInsets.only(left: 85, right: 85),
+                margin: EdgeInsets.only(left: 80, right: 80),
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    Text(
+                      "Select Your Gender",
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
                     Row(
                       children: [
                         ButtonTheme(
-                          height: 200,
+                          height: 180,
                           minWidth: 200,
                           child: RaisedButton(
                             elevation: 20,
@@ -94,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Row(
                       children: [
                         ButtonTheme(
-                          height: 200,
+                          height: 180,
                           minWidth: 200,
                           child: RaisedButton(
                             elevation: 20,
@@ -130,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Row(
                       children: [
                         ButtonTheme(
-                          height: 200,
+                          height: 180,
                           minWidth: 200,
                           child: RaisedButton(
                             elevation: 40,

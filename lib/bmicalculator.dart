@@ -11,6 +11,11 @@ class BMICalculator extends StatefulWidget {
 
 class _BMICalculatorState extends State<BMICalculator> {
   var bmi;
+  var bmiRangeCheck = '';
+  double height = 0.0;
+  double weight = 0.0;
+  bool validateHeight = false;
+  bool validateWeight = false;
 
   final heightController = TextEditingController();
   final weightController = TextEditingController();
@@ -28,6 +33,36 @@ class _BMICalculatorState extends State<BMICalculator> {
     bmi = double.parse(bmi);
     print(bmi.runtimeType);
     return bmi;
+  }
+
+  _bmiChecker(bmi, gender) {
+    var str;
+    print(bmi.runtimeType);
+    // For Male
+    if (gender == 'Male') {
+      if (bmi >= 18.5 && bmi <= 24.9) {
+        str = 'Helloo darling you are in perfect range';
+      }
+      if (bmi < 18.5) {
+        str = 'Weight barhaoo sahiibb , mar jao gayee';
+      }
+      if (bmi > 24.9) {
+        str = 'km Khaya Kar Motay Gadhay';
+      }
+    }
+
+    // For Female
+    if (gender == 'Female') {
+      if (bmi >= 18.5 && bmi <= 24.9) {
+        str = 'Helloo darling you are in perfect range';
+      }
+      if (bmi < 18.5) {
+        str = 'Weight barhaoo Mohatrma , mar jao gii nai touu';
+      } else {
+        str = 'km Khaya Kar motiiii thonsss';
+      }
+    }
+    return str;
   }
 
   @override
@@ -91,8 +126,11 @@ class _BMICalculatorState extends State<BMICalculator> {
                                 child: TextField(
                                   controller: weightController,
                                   keyboardType: TextInputType.number,
-                                  decoration:
-                                      InputDecoration(hintText: "Enter weight"),
+                                  decoration: InputDecoration(
+                                      hintText: "Enter weight",
+                                      errorText: validateWeight
+                                          ? "Weight can't be empty"
+                                          : null),
                                 ),
                               ),
                             ),
@@ -107,7 +145,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "Height in Feet",
+                                "Height in Meter",
                                 style: TextStyle(
                                     color: Colors.blue,
                                     fontSize: 15,
@@ -124,8 +162,11 @@ class _BMICalculatorState extends State<BMICalculator> {
                                 child: TextField(
                                   controller: heightController,
                                   keyboardType: TextInputType.number,
-                                  decoration:
-                                      InputDecoration(hintText: "Enter Meters"),
+                                  decoration: InputDecoration(
+                                      hintText: "Enter Meters",
+                                      errorText: validateHeight
+                                          ? "Heght can't be empty"
+                                          : null),
                                 ),
                               ),
                             ),
@@ -135,10 +176,28 @@ class _BMICalculatorState extends State<BMICalculator> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             onPressed: () {
-                              print(heightController.text);
+                              setState(() {
+                                heightController.text.isEmpty
+                                    ? validateHeight = true
+                                    : validateHeight = false;
+                                weightController.text.isEmpty
+                                    ? validateWeight = true
+                                    : validateWeight = false;
+                              });
+                              print("H: $height");
+                              print("W: $weight");
+                              print("TH ${height.runtimeType}");
+
+                              print("WH ${weight.runtimeType}");
+
                               bmi = _calculateBMI(
                                   heightController, weightController);
-                              print(bmi);
+
+                              bmiRangeCheck = _bmiChecker(bmi, gender);
+
+                              height = double.parse(heightController.text);
+                              weight = double.parse(weightController.text);
+
                               this.setState(() {});
                             },
                             child: Text("CALCULATE"),
@@ -164,12 +223,12 @@ class _BMICalculatorState extends State<BMICalculator> {
                       ),
                       color: Colors.deepPurple,
                     ),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Your Calculated BMI is",
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            "BMI Results",
                             style: TextStyle(
                               fontSize: 25,
                               color: Colors.white,
@@ -177,8 +236,73 @@ class _BMICalculatorState extends State<BMICalculator> {
                               fontStyle: FontStyle.italic,
                             ),
                           ),
-                        )
-                      ],
+                          Divider(
+                            color: Color(0xffffc764),
+                            thickness: 1,
+                            endIndent: 65,
+                            indent: 65,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            weight == 0.0
+                                ? " "
+                                : 'Weight: ${weightController.text} Kg',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            height == 0.0
+                                ? ""
+                                : 'Height: ${heightController.text} Meter',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          height == 0.0
+                              ? SizedBox(
+                                  height: 1,
+                                )
+                              : Divider(
+                                  color: Color(0xffffc764),
+                                  thickness: 1,
+                                  endIndent: 65,
+                                  indent: 65,
+                                ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            bmi == null ? "" : "BMI: $bmi",
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(bmiRangeCheck,
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.green)),
+                        ],
+                      ),
                     ),
                   ),
                 ],
