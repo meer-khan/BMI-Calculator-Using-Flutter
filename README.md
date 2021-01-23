@@ -43,7 +43,9 @@
 
 👉 You can also follow my GitHub Profile to stay updated about my latest projects:
 
-[![GitHub Follow](https://img.shields.io/badge/Connect-Shahmeer-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/meer-khan)
+[![GitHub Follow](https://img.shields.io/badge/Connect-Shahmeer-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/meer-khan)  
+Twitter:  
+![Twitter Follow](https://img.shields.io/twitter/follow/meerkhandev?style=social)
 
 Copyright (c) 2020 Shahmeer Khan
 
