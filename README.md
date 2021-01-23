@@ -1,4 +1,6 @@
-# BMI Calculator in Flutter <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/flutter/flutter.png" height ='60' width='60' />   
+# BMI Calculator in Flutter <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/flutter/flutter.png" height ='60' width='60' />  
+
+![GitHub all releases](https://img.shields.io/github/downloads/meer-khan/BMI-Calculator-Using-Flutter/total?color=%23546fa8&label=Downloads&logo=Github&style=flat-square)
 
 ## Features:  
 :white_check_mark:Beautiful UI :sparkles:   
@@ -44,3 +46,6 @@
 [![GitHub Follow](https://img.shields.io/badge/Connect-Shahmeer-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/meer-khan)
 
 Copyright (c) 2020 Shahmeer Khan
+
+
+
