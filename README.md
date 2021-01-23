@@ -25,7 +25,12 @@
   Hit Run Without Debug :fire:    
   
  ## Screen Shots 
-  
+  <img src="https://user-images.githubusercontent.com/40295656/105573009-682c6580-5d7c-11eb-971d-2032b3476cd5.png" height = '350' width='200'/> 
+   <img src="https://user-images.githubusercontent.com/40295656/105573011-695d9280-5d7c-11eb-8887-04173088d840.png" height = '350' width='200'/>
+  <img src="https://user-images.githubusercontent.com/40295656/105573013-6a8ebf80-5d7c-11eb-8864-228d957b1721.png" height = '350' width='200'/>
+   <img src="https://user-images.githubusercontent.com/40295656/105573015-6b275600-5d7c-11eb-8596-441183ed5b6f.png" height = '350' width='200'/>
+   <img src="https://user-images.githubusercontent.com/40295656/105573007-6662a200-5d7c-11eb-9abc-1131e6a2e937.png" height = '350' width='200'/>  
+   
   
   
   ## Author
